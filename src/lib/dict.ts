@@ -10,7 +10,7 @@ export const dict = {
     cta_primary: "Pedir Proposta",
     cta_secondary: "Ver Pacotes",
 
-    hero_eyebrow: "Sites para negócios portugueses",
+    hero_eyebrow: "Sites feitos à mão, para negócios com ambição",
     hero_title_a: "Presença digital",
     hero_title_b: "à medida do seu",
     hero_title_c: "negócio",
@@ -185,7 +185,7 @@ export const dict = {
     f_required: "Campo obrigatório",
     f_invalid_email: "Email inválido",
 
-    footer_tagline: "Sites para pequenos negócios. Feitos à mão, em Portugal.",
+    footer_tagline: "Presença digital com alma. Feita em Portugal.",
     footer_rights: "Todos os direitos reservados.",
     lang_label: "Idioma",
   },
@@ -198,7 +198,7 @@ export const dict = {
     cta_primary: "Request a Quote",
     cta_secondary: "See Packages",
 
-    hero_eyebrow: "Websites for Portuguese small businesses",
+    hero_eyebrow: "Handcrafted for ambitious businesses",
     hero_title_a: "A digital presence",
     hero_title_b: "tailored to your",
     hero_title_c: "business",
@@ -373,7 +373,7 @@ export const dict = {
     f_required: "Required field",
     f_invalid_email: "Invalid email",
 
-    footer_tagline: "Websites for small businesses. Handcrafted in Portugal.",
+    footer_tagline: "Digital identity with soul. Made in Portugal.",
     footer_rights: "All rights reserved.",
     lang_label: "Language",
   },

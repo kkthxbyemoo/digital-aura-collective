@@ -3,6 +3,10 @@ import { Check, ArrowRight } from "lucide-react";
 import { SectionHead } from "./Services";
 import type { DictKey } from "@/lib/dict";
 
+function selectPackage(key: DictKey) {
+  window.dispatchEvent(new CustomEvent("cd:select-package", { detail: key }));
+}
+
 type Pkg = { name: DictKey; tag: DictKey; price: DictKey; features: DictKey[]; popular?: boolean };
 
 const packages: Pkg[] = [
@@ -62,6 +66,7 @@ export function Packages() {
               </ul>
               <a
                 href="#contacto"
+                onClick={() => selectPackage(p.name)}
                 className={`mt-8 group inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-all ${
                   p.popular
                     ? "bg-background text-foreground hover:bg-background/90"
