@@ -6,18 +6,22 @@ import type { DictKey } from "@/lib/dict";
 type Pkg = { name: DictKey; tag: DictKey; price: DictKey; features: DictKey[]; popular?: boolean };
 
 const packages: Pkg[] = [
-  { name: "p1_name", tag: "p1_tag", price: "p1_price", features: ["p1_f1","p1_f2","p1_f3","p1_f4","p1_f5","p1_f6"] },
-  { name: "p2_name", tag: "p2_tag", price: "p2_price", popular: true, features: ["p2_f1","p2_f2","p2_f3","p2_f4","p2_f5","p2_f6","p2_f7","p2_f8"] },
-  { name: "p3_name", tag: "p3_tag", price: "p3_price", features: ["p3_f1","p3_f2","p3_f3","p3_f4","p3_f5","p3_f6","p3_f7","p3_f8"] },
-  { name: "p4_name", tag: "p4_tag", price: "p4_price", features: ["p4_f1","p4_f2","p4_f3","p4_f4","p4_f5","p4_f6","p4_f7"] },
+  { name: "p1_name", tag: "p1_tag", price: "p1_price", features: ["p1_f1","p1_f2","p1_f3","p1_f4"] },
+  { name: "p2_name", tag: "p2_tag", price: "p2_price", popular: true, features: ["p2_f1","p2_f2","p2_f3","p2_f4","p2_f5","p2_f6"] },
+  { name: "p3_name", tag: "p3_tag", price: "p3_price", features: ["p3_f1","p3_f2","p3_f3","p3_f4","p3_f5","p3_f6"] },
+  { name: "p4_name", tag: "p4_tag", price: "p4_price", features: ["p4_f1","p4_f2","p4_f3","p4_f4","p4_f5","p4_f6"] },
 ];
 
 const extras: { key: DictKey; price: DictKey; note?: DictKey }[] = [
-  { key: "e1", price: "e1_price" },
-  { key: "e2", price: "e2_price" },
+  { key: "e1", price: "e1_price", note: "e1_note" },
+  { key: "e2", price: "e2_price", note: "e2_note" },
   { key: "e3", price: "e3_price", note: "e3_note" },
-  { key: "e4", price: "e4_price" },
-  { key: "e5", price: "e5_price" },
+  { key: "e4", price: "e4_price", note: "e4_note" },
+  { key: "e5", price: "e5_price", note: "e5_note" },
+  { key: "e6", price: "e6_price", note: "e6_note" },
+  { key: "e7", price: "e7_price", note: "e7_note" },
+  { key: "e8", price: "e8_price", note: "e8_note" },
+  { key: "e9", price: "e9_price", note: "e9_note" },
 ];
 
 export function Packages() {

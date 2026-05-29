@@ -5,7 +5,7 @@ import { Check, Send, Sparkles } from "lucide-react";
 import type { DictKey } from "@/lib/dict";
 
 const packageKeys: DictKey[] = ["p1_name", "p2_name", "p3_name", "p4_name"];
-const extraKeys: DictKey[] = ["e1", "e2", "e3", "e4", "e5"];
+const extraKeys: DictKey[] = ["e1", "e2", "e3", "e4", "e5", "e6", "e7", "e8", "e9"];
 
 const inputCls =
   "w-full rounded-2xl border border-border bg-background/40 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-[var(--neon-cyan)] focus:ring-2 focus:ring-[var(--neon-cyan)]/20 transition-colors";
