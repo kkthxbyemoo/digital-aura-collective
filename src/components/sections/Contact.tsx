@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useI18n } from "@/lib/i18n";
 import { SectionHead } from "./Services";
 import { Check, Send, Sparkles } from "lucide-react";
@@ -31,6 +31,15 @@ export function Contact() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<DictKey>).detail;
+      if (detail) setForm((f) => ({ ...f, pkg: detail }));
+    };
+    window.addEventListener("cd:select-package", handler);
+    return () => window.removeEventListener("cd:select-package", handler);
+  }, []);
 
   const toggleExtra = (k: string) =>
     setForm((f) => ({ ...f, extras: f.extras.includes(k) ? f.extras.filter((x) => x !== k) : [...f.extras, k] }));
