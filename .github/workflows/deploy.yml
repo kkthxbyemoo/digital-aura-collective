@@ -27,14 +27,19 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      - name: Build
+      - name: Build (static prerender)
         run: bun run build
+        env:
+          NITRO_PRESET: static
+
+      - name: List output
+        run: ls -la .output/public || ls -la dist || echo 'No output found'
 
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: .output/public
 
   deploy:
     needs: build
