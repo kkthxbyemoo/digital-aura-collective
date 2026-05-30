@@ -32,8 +32,16 @@ jobs:
         env:
           NITRO_PRESET: static
 
-      - name: List output
-        run: ls -la .output/public || ls -la dist || echo 'No output found'
+      - name: Find output
+        run: |
+          echo "=== root ==="
+          ls -la
+          echo "=== .output (if exists) ==="
+          ls -la .output 2>/dev/null || echo 'no .output'
+          echo "=== dist (if exists) ==="
+          ls -la dist 2>/dev/null || echo 'no dist'
+          echo "=== find all index.html ==="
+          find . -name 'index.html' -not -path '*/node_modules/*' 2>/dev/null
 
       - uses: actions/configure-pages@v5
 
