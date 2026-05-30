@@ -27,31 +27,13 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      - name: Build
+      - name: Build (static preset)
         run: bun run build
         env:
           NITRO_PRESET: static
 
-      - name: Generate index.html
-        run: |
-          JS=$(ls dist/client/assets/*.js | head -1 | xargs basename)
-          CSS=$(ls dist/client/assets/*.css | head -1 | xargs basename)
-          cat > dist/client/index.html <<EOF
-          <!DOCTYPE html>
-          <html lang="en">
-            <head>
-              <meta charset="utf-8" />
-              <meta name="viewport" content="width=device-width, initial-scale=1" />
-              <title>Digital Aura Collective</title>
-              <link rel="stylesheet" href="/assets/$CSS" />
-            </head>
-            <body>
-              <div id="root"></div>
-              <script type="module" src="/assets/$JS"></script>
-            </body>
-          </html>
-          EOF
-          echo "Generated index.html with JS=$JS CSS=$CSS"
+      - name: Copy 404.html for SPA fallback
+        run: cp dist/client/index.html dist/client/404.html
 
       - uses: actions/configure-pages@v5
 
