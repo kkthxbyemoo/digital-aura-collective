@@ -25,12 +25,12 @@ export function Hero() {
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs tracking-[0.18em] uppercase text-muted-foreground">
-          <span className="size-1.5 rounded-full bg-[var(--neon-cyan)] shadow-[0_0_12px_var(--neon-cyan)]" />
+          <span className="size-1.5 rounded-full bg-[var(--neon-cyan)] pulse-dot" />
           {t("hero_eyebrow")}
         </div>
 
         <h1 className="mt-7 text-5xl sm:text-7xl lg:text-8xl font-semibold leading-[0.95] tracking-tight max-w-5xl">
-          {t("hero_title_a")} <span className="text-gradient">{t("hero_title_b")}</span> {t("hero_title_c")}.
+          {t("hero_title_a")} <span className="shimmer-text">{t("hero_title_b")}</span> {t("hero_title_c")}.
         </h1>
 
         <p className="mt-7 max-w-2xl text-lg text-muted-foreground leading-relaxed">
