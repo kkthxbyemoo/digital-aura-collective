@@ -36,11 +36,14 @@ export function Packages() {
         <SectionHead eyebrow={t("packages_eyebrow")} title={t("packages_title")} sub={t("packages_sub")} />
 
         <div className="mt-16 grid md:grid-cols-2 xl:grid-cols-4 gap-5">
-          {packages.map((p) => (
+          {packages.map((p, i) => (
             <div
               key={p.name}
-              className={`relative rounded-3xl p-7 flex flex-col ${p.popular ? "text-primary-foreground glow" : "glass"}`}
-              style={p.popular ? { background: "var(--gradient-aurora)" } : undefined}
+              className={`relative rounded-3xl p-7 flex flex-col sheen ${p.popular ? "text-primary-foreground glow" : "glass"}`}
+              style={{
+                ...(p.popular ? { background: "var(--gradient-aurora)" } : {}),
+                ["--sheen-delay" as string]: `${i * 1.6}s`,
+              }}
             >
               {p.popular && (
                 <span className="absolute -top-3 left-7 inline-flex items-center rounded-full bg-background text-foreground border border-border px-3 py-1 text-[10px] font-semibold tracking-[0.2em] uppercase">

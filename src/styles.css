@@ -104,15 +104,28 @@
     color: var(--color-foreground);
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
-    background-image:
-      radial-gradient(circle at 15% -10%, oklch(0.65 0.25 290 / 0.25), transparent 50%),
-      radial-gradient(circle at 85% 10%, oklch(0.85 0.18 200 / 0.18), transparent 55%),
-      radial-gradient(circle at 50% 100%, oklch(0.68 0.27 330 / 0.18), transparent 60%);
-    background-attachment: fixed;
+    position: relative;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+  }
+  /* Ambient background painted on a fixed, GPU-promoted layer.
+     Avoids `background-attachment: fixed`, which causes severe
+     scroll jank on Firefox (especially mobile). */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 15% -10%, oklch(0.65 0.25 290 / 0.25), transparent 50%),
+      radial-gradient(circle at 85% 10%, oklch(0.85 0.18 200 / 0.18), transparent 55%),
+      radial-gradient(circle at 50% 100%, oklch(0.68 0.27 330 / 0.18), transparent 60%);
+    transform: translateZ(0);
+    will-change: opacity;
+    animation: aurora-drift 22s ease-in-out infinite;
   }
   input,
   textarea,
@@ -137,7 +150,7 @@
 
 @utility glass {
   background: linear-gradient(180deg, oklch(1 0 0 / 0.04), oklch(1 0 0 / 0.01));
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(10px);
   border: 1px solid oklch(1 0 0 / 0.08);
 }
 
@@ -153,4 +166,94 @@
 @keyframes float-orb {
   0%,100% { transform: translate(0,0) scale(1); }
   50% { transform: translate(20px,-30px) scale(1.1); }
+}
+
+@keyframes aurora-drift {
+  0%,100% { opacity: 0.9; transform: translate3d(0,0,0); }
+  50%     { opacity: 1;   transform: translate3d(-1.5%, 1%, 0); }
+}
+
+@keyframes shimmer-sweep {
+  0%   { background-position: -150% 0; }
+  100% { background-position: 250% 0; }
+}
+
+@keyframes soft-pulse {
+  0%,100% { opacity: 0.85; box-shadow: 0 0 10px var(--neon-cyan); }
+  50%     { opacity: 1;    box-shadow: 0 0 18px var(--neon-cyan); }
+}
+
+@utility shimmer-text {
+  background: linear-gradient(
+    100deg,
+    oklch(0.85 0.18 200) 0%,
+    oklch(0.65 0.25 290) 30%,
+    oklch(1 0 0 / 0.95) 50%,
+    oklch(0.65 0.25 290) 70%,
+    oklch(0.68 0.27 330) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-sweep 7s ease-in-out infinite;
+}
+
+@utility pulse-dot {
+  animation: soft-pulse 3.2s ease-in-out infinite;
+}
+
+/* Card "sheen" — a slow diagonal light passing across glass cards.
+   Lightweight (single transform on a pseudo-element) and skipped on
+   reduced-motion / small screens for Firefox mobile perf. */
+@keyframes card-sheen {
+  0%   { transform: translateX(-120%) skewX(-12deg); opacity: 0; }
+  10%  { opacity: 0.7; }
+  60%  { opacity: 0; }
+  100% { transform: translateX(220%) skewX(-12deg); opacity: 0; }
+}
+.sheen {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    oklch(1 0 0 / 0.07) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%) skewX(-12deg);
+  animation: card-sheen 9s ease-in-out infinite;
+  animation-delay: var(--sheen-delay, 0s);
+  z-index: 0;
+}
+.sheen > * { position: relative; z-index: 1; }
+
+/* ------------------------------------------------------------------
+   Performance + accessibility guards.
+   Firefox mobile in particular chokes on large blurred elements +
+   backdrop-filter + infinite transforms. We dial those down on small
+   viewports and disable animation entirely when the user prefers
+   reduced motion. */
+@media (max-width: 768px) {
+  .glass { backdrop-filter: blur(6px); }
+  .blur-3xl { filter: blur(40px); }
+  body::before { animation: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

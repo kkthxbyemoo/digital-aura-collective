@@ -16,21 +16,21 @@ export function Hero() {
       />
       <div
         className="absolute -top-10 -left-20 size-[420px] rounded-full -z-10 blur-3xl opacity-50"
-        style={{ background: "radial-gradient(circle, oklch(0.65 0.25 290 / .6), transparent 70%)", animation: "float-orb 14s ease-in-out infinite" }}
+        style={{ background: "radial-gradient(circle, oklch(0.65 0.25 290 / .6), transparent 70%)", animation: "float-orb 18s ease-in-out infinite", willChange: "transform" }}
       />
       <div
         className="absolute top-20 -right-32 size-[520px] rounded-full -z-10 blur-3xl opacity-40"
-        style={{ background: "radial-gradient(circle, oklch(0.85 0.18 200 / .55), transparent 70%)", animation: "float-orb 18s ease-in-out infinite reverse" }}
+        style={{ background: "radial-gradient(circle, oklch(0.85 0.18 200 / .55), transparent 70%)", animation: "float-orb 24s ease-in-out infinite reverse", willChange: "transform" }}
       />
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs tracking-[0.18em] uppercase text-muted-foreground">
-          <span className="size-1.5 rounded-full bg-[var(--neon-cyan)] shadow-[0_0_12px_var(--neon-cyan)]" />
+          <span className="size-1.5 rounded-full bg-[var(--neon-cyan)] pulse-dot" />
           {t("hero_eyebrow")}
         </div>
 
         <h1 className="mt-7 text-5xl sm:text-7xl lg:text-8xl font-semibold leading-[0.95] tracking-tight max-w-5xl">
-          {t("hero_title_a")} <span className="text-gradient">{t("hero_title_b")}</span> {t("hero_title_c")}.
+          {t("hero_title_a")} <span className="shimmer-text">{t("hero_title_b")}</span> {t("hero_title_c")}.
         </h1>
 
         <p className="mt-7 max-w-2xl text-lg text-muted-foreground leading-relaxed">
