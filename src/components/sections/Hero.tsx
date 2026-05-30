@@ -16,11 +16,11 @@ export function Hero() {
       />
       <div
         className="absolute -top-10 -left-20 size-[420px] rounded-full -z-10 blur-3xl opacity-50"
-        style={{ background: "radial-gradient(circle, oklch(0.65 0.25 290 / .6), transparent 70%)", animation: "float-orb 14s ease-in-out infinite" }}
+        style={{ background: "radial-gradient(circle, oklch(0.65 0.25 290 / .6), transparent 70%)", animation: "float-orb 18s ease-in-out infinite", willChange: "transform" }}
       />
       <div
         className="absolute top-20 -right-32 size-[520px] rounded-full -z-10 blur-3xl opacity-40"
-        style={{ background: "radial-gradient(circle, oklch(0.85 0.18 200 / .55), transparent 70%)", animation: "float-orb 18s ease-in-out infinite reverse" }}
+        style={{ background: "radial-gradient(circle, oklch(0.85 0.18 200 / .55), transparent 70%)", animation: "float-orb 24s ease-in-out infinite reverse", willChange: "transform" }}
       />
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
